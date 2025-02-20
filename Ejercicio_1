@@ -1,0 +1,77 @@
+padre_de(abrahamSimpson, herbertPowell).
+padre_de(abrahamSimpson, homeroSimpson).
+
+padre_de(clancyBouvier, margeSimpson).
+padre_de(clancyBouvier, pattyBouvier).
+padre_de(clancyBouvier, selmaBouvier).
+
+padre_de(clancyBouvier, diome).%borrar
+
+
+padre_de(homeroSimpson, bartSimpson).
+padre_de(homeroSimpson, lisaSimpson).
+padre_de(homeroSimpson, maggieSimpson).
+
+
+madre_de(monaSimpons, herbertPowell).
+madre_de(monaSimpons, homeroSimpson).
+
+madre_de(jacquelineBouvier, diome).%borrar
+
+
+madre_de(jacquelineBouvier, margeSimpson).
+madre_de(jacquelineBouvier, pattyBouvier).
+madre_de(jacquelineBouvier, selmaBouvier).
+
+madre_de(margeSimpson, bartSimpson).
+madre_de(margeSimpson, lisaSimpson).
+madre_de(margeSimpson, maggieSimpson).
+
+madre_de(selmaBouvier, lingBouvier).
+
+
+sexo(diome, masculino).%borrar
+
+
+sexo(abrahamSimpson, masculino).
+sexo(clancyBouvier, masculino).
+
+sexo(homeroSimpson, masculino).
+sexo(herbertPowell, masculino).
+
+sexo(bartSimpson, masculino).
+
+
+sexo(monaSimpons, femenino).
+sexo(jacquelineBouvier, femenino).
+
+sexo(margeSimpson, femenino).
+sexo(pattyBouvier, femenino).
+sexo(selmaBouvier, femenino).
+
+sexo(lisaSimpson, femenino).
+sexo(maggieSimpson, femenino).
+sexo(lingBouvier, femenino).
+
+
+
+
+abuelo_de(X, Y):- 
+    padre_de(X, Z), (padre_de(Z, Y); madre_de(Z, Y)).
+
+abuela_de(X, Y):- 
+    madre_de(X, Z), (madre_de(Z, Y); padre_de(Z, Y)).
+
+
+hermano_de(X, Y):- 
+    padre_de(Z, Y), padre_de(Z, X), X \== Y, sexo(X, masculino) .
+
+hermana_de(X, Y):- 
+    padre_de(Z, Y), padre_de(Z, X), X \== Y, sexo(X, femenino).
+
+tio_de(X, Y):- 
+   	( madre_de(M , Y), hermano_de(X, M) ) ;
+    ( padre_de(P , Y), hermano_de(X, P) ).
+
+    
+    
