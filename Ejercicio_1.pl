@@ -17,8 +17,17 @@ progenitor_de( madre( margeSimpson ), hija( [ lisaSimpson, maggieSimpson ] ) ).
 progenitor_de( madre( selmaBouvier ), hija( [ lingBouvier ] ) ).
 
 abuelo_de(X, Y):-
-    padre_de(X, Hijos1), member( Z, Hijos1 ), ( padre_de(Z, Hijos2), member( Y, Hijos2 ); madre_de(Z, Hijos3), member( Y, Hijos3 ) ).
-
+    progenitor_de( padre(X), hijo(Hijos) ), member( Z, Hijos ),
+    ( 
+    	( 
+      		( progenitor_de( padre(Z), hijo( Hijos2 ) ), member( Y, Hijos2 ) ) ; ( progenitor_de( padre(Z), hija( Hijos2 ) ), member( Y, Hijos2 ) )
+        )
+    ;   
+    	( 
+      		( progenitor_de( madre(Z), hijo( Hijos2 ) ), member( Y, Hijos2 ) ) ; ( progenitor_de( madre(Z), hija( Hijos2 ) ), member( Y, Hijos2 ) )
+        )
+    ).
+    
 abuela_de(X, Y):-
     madre_de(X, Hijos1), member( Z, Hijos1 ), ( madre_de(Z, Hijos2), member( Y, Hijos2 ); padre_de(Z, Hijos3), member( Y, Hijos3 ) ).
 
