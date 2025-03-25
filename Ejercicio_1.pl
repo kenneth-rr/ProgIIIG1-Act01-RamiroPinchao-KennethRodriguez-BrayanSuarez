@@ -1,20 +1,20 @@
-padre_de(abrahamSimpson, [ herbertPowell, homeroSimpson ] ).
+progenitor_de( padre(abrahamSimpson), hijo( [ herbertPowell, homeroSimpson ] ) ).
 
-padre_de(clancyBouvier, [ margeSimpson, pattyBouvier, selmaBouvier ] ).
+progenitor_de( padre(clancyBouvier), hija( [ margeSimpson, pattyBouvier, selmaBouvier ] ) ).
 
-padre_de(homeroSimpson, [ bartSimpson, lisaSimpson, maggieSimpson ] ).
+progenitor_de( padre( homeroSimpson ), hijo( bartSimpson ) ).
 
-madre_de(monaSimpons, [ herbertPowel, homeroSimpson ] ).
+progenitor_de( padre( homeroSimpson ), hija( [ lisaSimpson, maggieSimpson ] ) ).
 
-madre_de(jacquelineBouvier, [ margeSimpson, pattyBouvier, selmaBouvier ] ).
+progenitor_de( madre( monaSimpons ), hijo( [ herbertPowel, homeroSimpson ] ) ).
 
-madre_de(margeSimpson, [ bartSimpson, lisaSimpson, maggieSimpson ] ).
+progenitor_de( madre( jacquelineBouvier ), hija( [ margeSimpson, pattyBouvier, selmaBouvier ] ) ).
 
-madre_de(selmaBouvier, [ lingBouvier ] ).
+progenitor_de( madre( margeSimpson ), hijo( bartSimpson ) ).
 
-sexo( [abrahamSimpson, clancyBouvier, homeroSimpson, herbertPowell, bartSimpson ] , masculino).
+progenitor_de( madre( margeSimpson ), hija( [ lisaSimpson, maggieSimpson ] ) ).
 
-sexo( [ monaSimpons, jacquelineBouvier, margeSimpson, pattyBouvier, selmaBouvier, lisaSimpson, maggieSimpson, lingBouvier ], femenino).
+progenitor_de( madre( selmaBouvier ), hija( [ lingBouvier ] ) ).
 
 abuelo_de(X, Y):-
     padre_de(X, Hijos1), member( Z, Hijos1 ), ( padre_de(Z, Hijos2), member( Y, Hijos2 ); madre_de(Z, Hijos3), member( Y, Hijos3 ) ).
