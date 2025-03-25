@@ -62,10 +62,10 @@ hermana_de(X, Y):-
     ( member( Y, Hijos ) ; member( Y, Hijas ) ), X \= Y.
 
 tio_de(X, Y):-
-    
-    
-    %( madre_de( Madre, Hijos1 ), member( Y, Hijos1 ), ( hermano_de(X, Madre) ; hermana_de(X, Madre) ) ) ;
-    %( padre_de( Padre, Hijos2 ), member( Y, Hijos2 ), ( hermano_de(X, Padre) ; hermana_de(X, Padre) ) ).
+    (hermano_de(X, Padre), progenitor_de(padre(Padre), hijo(Hijos)), progenitor_de(padre(Padre), hija(Hijas)), ( member( Y, Hijos ) ; member( Y, Hijas ) ) );
+    (hermana_de(X, Padre), progenitor_de(padre(Padre), hijo(Hijos)), progenitor_de(padre(Padre), hija(Hijas)), ( member( Y, Hijos ) ; member( Y, Hijas ) ) );
+    (hermano_de(X, Madre), progenitor_de(madre(Madre), hijo(Hijos)), progenitor_de(madre(Madre), hija(Hijas)), ( member( Y, Hijos ) ; member( Y, Hijas ) ) );
+    (hermana_de(X, Madre), progenitor_de(madre(Madre), hijo(Hijos)), progenitor_de(madre(Madre), hija(Hijas)), ( member( Y, Hijos ) ; member( Y, Hijas ) ) ).
 
 primo_de(X, Y):-
     tio_de(Progenitor, Y),( padre_de( Progenitor, Hijos2 ), member( X, Hijos2 ) ;  madre_de( Progenitor, Hijos1 ), member( X, Hijos1 ) ), X \= Y.
