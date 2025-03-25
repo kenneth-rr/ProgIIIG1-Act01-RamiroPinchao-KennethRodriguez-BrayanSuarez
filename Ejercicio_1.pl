@@ -41,7 +41,10 @@ abuela_de(X, Y):-
     ).
 
 hermano_de(X, Y):-
-    padre_de( _, Hijos1), member( Y, Hijos1 ), member( X, Hijos1 ), X \= Y, sexo(Hombres, masculino), member( X, Hombres ) .
+    progenitor_de( P, hijo( Hijos ) ), member( X, Hijos ), progenitor_de( P, hija( Hijas ) ),
+    ( member( Y, Hijos ) ; member( Y, Hijas ) ), X \= Y.
+    
+    %padre_de( _, Hijos1), member( Y, Hijos1 ), member( X, Hijos1 ), X \= Y, sexo(Hombres, masculino), member( X, Hombres ) .
 
 hermana_de(X, Y):-
     padre_de( _, Hijos1), member( Y, Hijos1 ), member( X, Hijos1 ), X \= Y, sexo(Mujeres, femenino), member( X, Mujeres ) .
